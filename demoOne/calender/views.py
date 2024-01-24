@@ -52,7 +52,6 @@ challenge = {
     "octomber":"Learning code 10",
     "november":"Learning code 11",
     "december":"Learning code 12",
-    
 } 
 
 # def montly_challenge(request,month):
@@ -65,13 +64,23 @@ challenge = {
 #         reponseText = "I will start going to coding classes"
 #     return HttpResponse(reponseText)
 
+def index(request):
+    list_items = ""
+    months =  list(challenge.keys())
+    for month in months:
+          c_month = month.capitalize()
+          p_month = reverse('month-challenge',args=[month])
+          list_items  = list_items+f"<li><a href=\"{p_month}\">{c_month}</a></li>"
+    reponse_data =f"<ul>{list_items}<ul>"
+    return HttpResponse(reponse_data)
 
+          
 def montly_challenge(request,month):# may
     try:
         reponseText = challenge[month]
-        return HttpResponse(reponseText)
+        return HttpResponse(f"<h1>{reponseText}</h1>")
     except:
-        return HttpResponse("This kind of month is not supported")
+        return HttpResponse(f"<h1>This kind of month is not supported</h1>")
 
 def monthly_challenge_by_number(request,month): # 2
       months =  list(challenge.keys())
