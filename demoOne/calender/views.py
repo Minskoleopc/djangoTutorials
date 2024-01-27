@@ -1,6 +1,9 @@
 from django.shortcuts import render
 from django.http import HttpResponse , HttpResponseRedirect
 from django.urls import reverse
+from django.template.loader import render_to_string
+
+
 # Create your views here.
 
 # def january(request):
@@ -78,7 +81,11 @@ def index(request):
 def montly_challenge(request,month):# may
     try:
         reponseText = challenge[month]
-        return HttpResponse(f"<h1>{reponseText}</h1>")
+        #return HttpResponse(f"<h1>{reponseText}</h1>")
+        #reponseText = render_to_string('calender/calender.html')
+        #return HttpResponse(reponseText)
+        return render(request,'calender/calender.html',{"text":reponseText})
+
     except:
         return HttpResponse(f"<h1>This kind of month is not supported</h1>")
 
