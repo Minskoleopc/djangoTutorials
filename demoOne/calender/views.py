@@ -70,12 +70,18 @@ challenge = {
 def index(request):
     list_items = ""
     months =  list(challenge.keys())
-    for month in months:
-          c_month = month.capitalize()
-          p_month = reverse('month-challenge',args=[month])
-          list_items  = list_items+f"<li><a href=\"{p_month}\">{c_month}</a></li>"
-    reponse_data =f"<ul>{list_items}<ul>"
-    return HttpResponse(reponse_data)
+    return render(request,"calender/index.html", {"months":months})
+
+
+    # for month in months:
+    #       c_month = month.capitalize()
+    #       p_month = reverse('month-challenge',args=[month])
+    #       list_items  = list_items+f"<li><a href=\"{p_month}\">{c_month}</a></li>"
+    # reponse_data =f"<ul>{list_items}<ul>"
+    # return HttpResponse(reponse_data)
+
+
+
 
           
 def montly_challenge(request,month):# may
@@ -84,7 +90,8 @@ def montly_challenge(request,month):# may
         #return HttpResponse(f"<h1>{reponseText}</h1>")
         #reponseText = render_to_string('calender/calender.html')
         #return HttpResponse(reponseText)
-        return render(request,'calender/calender.html',{"text":reponseText})
+        #month = month.capitalize() 
+        return render(request,'calender/calender.html',{"text":reponseText,"month_text":month})
 
     except:
         return HttpResponse(f"<h1>This kind of month is not supported</h1>")
