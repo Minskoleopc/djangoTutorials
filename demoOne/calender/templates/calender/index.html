@@ -1,4 +1,15 @@
-<!DOCTYPE html>
+{% extends "base.html" %}
+{% block content %}
+<h1>Month's and click on it to find the challenges <h1>
+    <ul>
+        {% for month in months %}
+            <li><a href ="{% url "month-challenge" month %}">{{month | title}}</a></li>
+        {% endfor %}
+<ul>
+{% endblock %}
+
+
+{% comment %} <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -6,12 +17,21 @@
     <title>Document</title>
 </head>
 <body>
-    
+    <h1>Month's and click on it to find the challenges <h1>
     <ul>
+        {% for month in months %}
+            <li><a href ="{% url "month-challenge" month %}">{{month | title}}</a></li>
+        {% endfor %}
+    <ul>
+
+    
+    <!-- <ul>
         {% for month in months %}
             <li><a href = "{% url 'month-challenge' month %}">{{month|title}}</a></li>
         {% endfor %}
-    </ul>
+    </ul> -->
     
 </body>
-</html>
+</html> {% endcomment %}
+    
+   

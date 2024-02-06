@@ -1,4 +1,15 @@
-<!DOCTYPE html>
+{% extends "base.html" %}
+{% block content %}
+    <h1>This is month's challenge - {{month_text | title}} </h1>
+    {% if text is not None %}
+        <h2>Hello month ....{{text |upper}}</h2>
+    {% else %}
+        <p>There is not challenge available for this month</p>
+    {% endif %}
+
+{% endblock %}
+    
+{% comment %} <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -6,7 +17,12 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>This is month's challenge - {{month_text|title}} </h1>
-    <h2>Hello month ....{{text}}</h2>
+    <h1>This is month's challenge - {{month_text | title}} </h1>
+    {% if text is not None %}
+        <h2>Hello month ....{{text |upper}}</h2>
+    {% else %}
+        <p>There is not challenge available for this month</p>
+    {% endif %}
+
 </body>
-</html>
+</html> {% endcomment %}

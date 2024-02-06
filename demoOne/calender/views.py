@@ -54,7 +54,7 @@ challenge = {
     "september":"Learning code 9",
     "octomber":"Learning code 10",
     "november":"Learning code 11",
-    "december":"Learning code 12",
+    "december":None,
 } 
 
 # def montly_challenge(request,month):
@@ -68,7 +68,7 @@ challenge = {
 #     return HttpResponse(reponseText)
 
 def index(request):
-    list_items = ""
+    #list_items = ""
     months =  list(challenge.keys())
     return render(request,"calender/index.html", {"months":months})
 
