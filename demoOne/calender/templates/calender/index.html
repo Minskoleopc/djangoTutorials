@@ -1,11 +1,18 @@
 {% extends "base.html" %}
+{% block title %}All challenges{% endblock %}
+
 {% block content %}
+
+{% include "calender/includes/headerOne.html" %}
 <h1>Month's and click on it to find the challenges <h1>
     <ul>
         {% for month in months %}
             <li><a href ="{% url "month-challenge" month %}">{{month | title}}</a></li>
         {% endfor %}
 <ul>
+
+
+    {% include "calender/includes/footerOne.html" %}
 {% endblock %}
 
 
