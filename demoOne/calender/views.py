@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse , HttpResponseRedirect
 from django.urls import reverse
 from django.template.loader import render_to_string
+from django.http import Http404
 
 
 # Create your views here.
@@ -92,9 +93,8 @@ def montly_challenge(request,month):# may
         #return HttpResponse(reponseText)
         #month = month.capitalize() 
         return render(request,'calender/calender.html',{"text":reponseText,"month_text":month})
-
     except:
-        return HttpResponse(f"<h1>This kind of month is not supported</h1>")
+        raise Http404()
 
 def monthly_challenge_by_number(request,month): # 2
       months =  list(challenge.keys())

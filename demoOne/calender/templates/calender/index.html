@@ -1,8 +1,15 @@
 {% extends "base.html" %}
+{% load static %}
+
+
+
+{% block css_files %}
+    <link rel = "stylesheet" href = {% static "calender/calender.css" %}>
+{% endblock %}
+
 {% block title %}All challenges{% endblock %}
 
 {% block content %}
-
 {% include "calender/includes/headerOne.html" %}
 <h1>Month's and click on it to find the challenges <h1>
     <ul>
@@ -10,13 +17,14 @@
             <li><a href ="{% url "month-challenge" month %}">{{month | title}}</a></li>
         {% endfor %}
 <ul>
-
-
     {% include "calender/includes/footerOne.html" %}
 {% endblock %}
 
 
-{% comment %} <!DOCTYPE html>
+
+
+{% comment %} 
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -39,6 +47,6 @@
     </ul> -->
     
 </body>
-</html> {% endcomment %}
-    
+</html> 
+     {% endcomment %}
    
