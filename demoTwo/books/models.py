@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.validators import MinValueValidator , MaxValueValidator
 
 # Create your models here.
 # what  is data ??
@@ -41,10 +42,33 @@ from django.db import models
 
 class Book(models.Model):
     title = models.CharField(max_length = 50)
-    rating = models.IntegerField()
+    rating = models.IntegerField(validators = [MinValueValidator(1),MaxValueValidator(5)])
+    author = models.CharField(null = True ,max_length = 100)
+    is_bestSelling = models.BooleanField(default = False)
 
-def __str__(self):
-        return f'The creature type is {self.title} and the age is {self.rating}'
+
+    def __str__(self):
+            return self.title
+    
+    #create
+    # b1 = Book(title = "k",rating =5,author= "chinmay",is_bestSelling=True)
+    # b1.save()
+    #Book.objects.create(title = "k",rating =5,author= "chinmay",is_bestSelling=True)
+
+    #retrive 
+    #b1 = Books.object.all()[0]
+
+    # update 
+    #b1.title = "ram"
+    #b1.delete()
+
+    #---------------------------------------------------------------------->
+    #Book.objects.get(id = 1)
+    #Book.objects.get(id = 2)
+    #https://docs.djangoproject.com/en/5.0/topics/db/queries/
+
+
+
 
 
 
