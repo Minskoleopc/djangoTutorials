@@ -46,7 +46,6 @@ class Book(models.Model):
     author = models.CharField(null = True ,max_length = 100)
     is_bestSelling = models.BooleanField(default = False)
 
-
     def __str__(self):
             return self.title
     
@@ -68,6 +67,19 @@ class Book(models.Model):
     #https://docs.djangoproject.com/en/5.0/topics/db/queries/
 
 
+
+
+    # Select * Book where author firstName = "ram "
+    # Book.objects.filter(title = "ramayan").values()
+
+
+    # Select * from Book where title = "ramayan" AND rating > 8
+    # Book.objects.filter(title = "ramayan",rating _gte=8).values()
+    # Book.objects.filter(title ="ramayan").values() | Book.objects.filter(title = "Mahabharat").values()
+    # Book.objects.filter(title__startswith="r").values() 
+    # Book.objects.filter(title__endswith="e").values() 
+    # Blog.objects.values(lower_name=Lower("name"))
+    # Books.object.values(lower_author = Lower(author))
 
 
 
