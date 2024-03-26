@@ -1,5 +1,38 @@
 from django.db import models
 from django.core.validators import MinValueValidator , MaxValueValidator
+# address has one to one with author
+class Address(models.Model):
+    stree= models.CharField(max_lenght = 80)
+    post_code = models.CharField(max_length = 6)
+    city = models.CharField(max_length = 50)
+
+# author has one to many with books 
+class Author(models.Model):
+    first_name = models.CharField(max_lenth = 100)
+    last_name  = models.CharField(max_lenght = 100)
+    address = models.OneToOneField(Address,on_delete = models.CASCADE)
+
+class Book(models.Model):
+    title = models.CharField(max_length = 50)
+    rating  = models.IntegerField()
+    author = models.ForeignKey(Author,on_delete = models.CASCASE)
+    is_bestselling = models.BooleanField(default = False)
+
+
+
+
+
+
+
+    
+
+
+
+
+
+
+
+
 
 # Create your models here.
 # what  is data ??
@@ -40,15 +73,15 @@ from django.core.validators import MinValueValidator , MaxValueValidator
 #     rating = models.IntegerField()
 
 
-class Book(models.Model):
-    title = models.CharField(max_length = 50)
-    rating = models.IntegerField(validators = [MinValueValidator(1),MaxValueValidator(5)])
-    author = models.CharField(null = True ,max_length = 100)
-    is_bestSelling = models.BooleanField(default = False)
+# class Book(models.Model):
+#     title = models.CharField(max_length = 50)
+#     rating = models.IntegerField(validators = [MinValueValidator(1),MaxValueValidator(5)])
+#     author = models.CharField(null = True ,max_length = 100)
+#     is_bestSelling = models.BooleanField(default = False)
 
-    def __str__(self):
-            return self.title
-    
+#     def __str__(self):
+#             return self.title
+
     #create
     # b1 = Book(title = "k",rating =5,author= "chinmay",is_bestSelling=True)
     # b1.save()
@@ -64,23 +97,26 @@ class Book(models.Model):
     #---------------------------------------------------------------------->
     #Book.objects.get(id = 1)
     #Book.objects.get(id = 2)
-    #https://docs.djangoproject.com/en/5.0/topics/db/queries/
+    #queries executed
+    #Book.objects.get(id = 2) 
+    #Book.objects.get(title = "ramayan")
+    #Book.objects.filter(is_bestSelling = True)
+    #Book.objects.filter(id__gte=2)
+    #Book.objects.filter(id__lte=2)
+    #Book.objects.filter(id__gte=2)
+    #Book.objects.filter(id__gt=2)
+    # AND operation
+    #Book.objects.filter(id__gt=2,is_bestSelling=False)
+    #Book.objects.filter(title__startswith="r").values() 
+    #Book.objects.filter(title__endswith="e").values() 
+    
 
 
 
 
-    # Select * Book where author firstName = "ram "
-    # Book.objects.filter(title = "ramayan").values()
 
 
-    # Select * from Book where title = "ramayan" AND rating > 8
-    # Book.objects.filter(title = "ramayan",rating _gte=8).values()
-    # Book.objects.filter(title ="ramayan").values() | Book.objects.filter(title = "Mahabharat").values()
-    # Book.objects.filter(title__startswith="r").values() 
-    # Book.objects.filter(title__endswith="e").values() 
-    # Blog.objects.values(lower_name=Lower("name"))
-    # Books.object.values(lower_author = Lower(author))
-
+   
 
 
 
